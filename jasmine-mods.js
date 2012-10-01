@@ -11,7 +11,6 @@ jasmine.stackTraceFilter = function(msg) {
     for (i=1; i<splitMsg.length; i++){  //loop through the message array
  
       if (splitMsg[i].indexOf("jasmine.js") == -1){ //test for messages containing jasmine.js
-        //delete msg[i];
         finalMsg += splitMsg[i] + "\n";  //if the message does not contain jasmine.js, add to the final message for output
       }
     }
