@@ -1,9 +1,23 @@
 jasmine.stackTraceFilter = function(msg) {
-    // at this point, msg is a string containing the stack trace message
-    // msg contains multiple lines separated by "\n"
-    // this function should return a new string that omits any lines in msg that match
-    //     the pattern "jasmine.js:N", where N is a line number
-    return msg;
+
+    /**
+    todo: rewrite utilizing a defined array of regular expressions (something like 
+      var regexList = ['/jasmine:\d+/', 'jermaine:\d+'];)
+    */
+
+    var splitMsg = msg.split("\n"); //create an array of messages separated by \n
+    var finalMsg = splitMsg[0] + "\n"; //start the final message with the first line containing the type error
+
+    for (i=1; i<splitMsg.length; i++){  //loop through the message array
+ 
+      if (splitMsg[i].indexOf("jasmine.js") == -1){ //test for messages containing jasmine.js
+        //delete msg[i];
+        finalMsg += splitMsg[i] + "\n";  //if the message does not contain jasmine.js, add to the final message for output
+      }
+    }
+
+    return finalMsg;
+
 };
 
 jasmine.HtmlReporter.SpecView.prototype.appendFailureDetail = function() {
